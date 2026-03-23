@@ -5,22 +5,24 @@ import scipy.sparse as sp
 import scipy.sparse.linalg as spla
 import pandas as pd
 from scipy.optimize import brentq
+import sys
 # For our model, we will consider (bosons) ⊗ (spin)
 
 # Hamiltonian parts
 
-def H_0(J, mu, L, Nb): # Nb --> Number of bosons
+def H_0(J, mu, L, Nb, Nd): # Nb --> Number of bosons
     dim = (2**L)
     H = np.zeros((dim, dim), dtype=np.complex128)
     s_dim = 2**L
     #h_i = 2*mu * np.random.rand(L) - mu
 
-    seed = 10 # NOTE: Currently hardcoded -> Must fix this
+    #seed = 10 # NOTE: Currently hardcoded -> Must fix this
+    seed = Nd
     rng = np.random.Generator(np.random.MT19937(seed))
     h_i = 2*mu * rng.random(L) - mu
     #print(h_i)
     #h_i = [-0.01802542253143996, 0.07315167189045962, -0.032767256062385564, -0.11333270691216582] # NOTE: This was used to match Koki's code
-    h_i = [-0.01802542253143996, 0.07315167189045962, -0.032767256062385564, -0.11333270691216582, 0.04765435346883812, 0.026099231375528387] # NOTE: This was used to match Koki's code
+    #h_i = [-0.01802542253143996, 0.07315167189045962, -0.032767256062385564, -0.11333270691216582, 0.04765435346883812, 0.026099231375528387] # NOTE: This was used to match Koki's code
     for s in range(dim):
         # Diagonal terms
         for i in range(L):
@@ -273,19 +275,27 @@ def cal_localT(j, rhoss, eigvals, U, Nb, debye, L, small_gamma = 1):
     )
     return T_local
 '''
+
+# THIS IS FOR THE CLUSTER
 def main():
-    GAMMA = [0.1]
+    
+    GAMMA_ARRAY = np.linspace(0, 0.5, 50)
+    L_ARRAY = [4, 5]
+    L = L_ARRAY[int(sys.argv[1]/50)]
+    GAMMA = [GAMMA_ARRAY[sys.argv[1] % 50]]
+
     J= -1.07
-    μ = 0.2 
+    μ = 1.3 
     Ωd = 4.0
     ω = np.pi / 0.8
-    L = 4
     Nb = 10
-    Nd = 1
-    debye_omega = 10.0
+    Nd = 10240
+    debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
     kappa = 0
     alpha = 1
-    #All_H = []
+
+    base_seed = 0  # NOTE: Sets base seed
+
     temp_fluctuation = []
     H1 = H_1(L, Nb)
     b = create_b(Nb, alpha=alpha, L=L)
@@ -294,13 +304,56 @@ def main():
     H2 = H1 @ (b + b_dagger)
 
     for G in GAMMA:
-        #Temp_j = []
         fluctuations = []
         C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
         H2_scaled = H2 * G
         for k in range(Nd):
             Temp_j = []
-            H0 = H_0(J, μ, L, Nb)
+            H0 = H_0(J, μ, L, Nb, (base_seed + k))
+            H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+            eigvals, U = np.linalg.eigh(H)
+            ss = rho_ss(U, b, H_number/ω, kappa, ω, L, Nb)
+            for j in range(L):
+                Temp_j.append(cal_localT(j, ss, eigvals, U, Nb, debye_omega, L))
+            delta_T = np.std(Temp_j)
+            mean_T = np.mean(Temp_j)
+            fluctuations.append(delta_T/mean_T)
+        temp_fluctuation.append(np.mean(fluctuations))
+
+    print(f"Fluctuation: {temp_fluctuation}")
+
+
+# THIS IS FOR QUICK TESTING
+def main_TEST():
+    L = 4
+    GAMMA = [0.1]
+    J= -1.07
+    μ = 1.3 
+    Ωd = 4.0
+    ω = np.pi / 0.8
+    Nb = 10
+    Nd = 1
+    debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
+    kappa = 0
+    alpha = 1
+
+    base_seed = 0  # NOTE: Sets base seed
+
+    temp_fluctuation = []
+    H1 = H_1(L, Nb)
+    b = create_b(Nb, alpha=alpha, L=L)
+    b_dagger = b.conj().T
+    H_number = b_dagger_b(ω, b, b_dagger, L)
+    H2 = H1 @ (b + b_dagger)
+
+    for G in GAMMA:
+        fluctuations = []
+        C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+        H2_scaled = H2 * G
+        for k in range(Nd):
+            Temp_j = []
+            H0 = H_0(J, μ, L, Nb, (base_seed + k))
             H = H0 + (H1 * C_H1) + H2_scaled + H_number
 
             eigvals, U = np.linalg.eigh(H)
@@ -315,3 +368,14 @@ def main():
     print(f"Fluctuation: {temp_fluctuation}")
 
 main()
+
+
+'''
+Things to keep note of:
+
+- I compared with Kokis code with
+    - μ = 0.2
+    - debye = 10
+    - Hard Coded \mu_i values
+    - Everything matched (Check Excel sheet)
+'''

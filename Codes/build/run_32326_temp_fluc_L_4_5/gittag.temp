@@ -1,0 +1,64 @@
+commit 0865e7c5bcae1eb74bdc47e1fa72c5b2ea005d22
+Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
+Date:   Mon Mar 23 18:08:24 2026 -0500
+
+    Commit before run run_32326_temp_fluc_L_4_5
+
+commit 014b9f3aabacb7e35f06a5997551bee4fefa7e35
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:46:24 2026 -0500
+
+    Changed to 50 points
+
+commit 3fb8104871d586a15d50a3a63fe462e3eff9bc41
+Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
+Date:   Mon Mar 23 17:44:42 2026 -0500
+
+    build folder created
+
+commit a5387922b2052ca55471abaf8d3d437ff5619f83
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:30:45 2026 -0500
+
+    Quick note on scaling added
+
+commit 3d7655760742043de0b1c89479fc01c98d9b0d00
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:29:34 2026 -0500
+
+    Nd = 1500
+
+commit 7e15f9371c67b4d735830869df091d771738ca64
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:28:28 2026 -0500
+
+    Created code to save results in .npz files
+
+commit df139de8c50b7fb8b9571b40f98ed932311cdad6
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 16:16:51 2026 -0500
+
+    Created a new main function for temperature fluctuation measurement in temp_fluc_dense:
+    
+    - Meant to implement for the cluster
+    
+    - I must still create code to input data into .npz file
+
+commit 9d1ddd760af1b8d2606049c068d14f620f2cd24d
+Merge: 5912125 d1dc067
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 15:14:34 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+
+commit 591212512cadc124dd8a2d4bce949e1dd1620ca3
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 15:12:23 2026 -0500
+
+    Initial commit
+
+commit d1dc0674a68059237d9bad600860f279bc83e5f7
+Author: sina11178 <113195576+sina11178@users.noreply.github.com>
+Date:   Mon Mar 23 15:03:21 2026 -0500
+
+    Initial commit

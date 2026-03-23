@@ -276,54 +276,6 @@ def cal_localT(j, rhoss, eigvals, U, Nb, debye, L, small_gamma = 1):
     return T_local
 '''
 
-# THIS IS FOR THE CLUSTER
-def main():
-    
-    GAMMA_ARRAY = np.linspace(0, 0.5, 50)
-    L_ARRAY = [4, 5]
-    L = L_ARRAY[int(sys.argv[1]/50)]
-    GAMMA = [GAMMA_ARRAY[sys.argv[1] % 50]]
-
-    J= -1.07
-    μ = 1.3 
-    Ωd = 4.0
-    ω = np.pi / 0.8
-    Nb = 10
-    Nd = 10240
-    debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
-    kappa = 0
-    alpha = 1
-
-    base_seed = 0  # NOTE: Sets base seed
-
-    temp_fluctuation = []
-    H1 = H_1(L, Nb)
-    b = create_b(Nb, alpha=alpha, L=L)
-    b_dagger = b.conj().T
-    H_number = b_dagger_b(ω, b, b_dagger, L)
-    H2 = H1 @ (b + b_dagger)
-
-    for G in GAMMA:
-        fluctuations = []
-        C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
-        H2_scaled = H2 * G
-        for k in range(Nd):
-            Temp_j = []
-            H0 = H_0(J, μ, L, Nb, (base_seed + k))
-            H = H0 + (H1 * C_H1) + H2_scaled + H_number
-
-            eigvals, U = np.linalg.eigh(H)
-            ss = rho_ss(U, b, H_number/ω, kappa, ω, L, Nb)
-            for j in range(L):
-                Temp_j.append(cal_localT(j, ss, eigvals, U, Nb, debye_omega, L))
-            delta_T = np.std(Temp_j)
-            mean_T = np.mean(Temp_j)
-            fluctuations.append(delta_T/mean_T)
-        temp_fluctuation.append(np.mean(fluctuations))
-
-    print(f"Fluctuation: {temp_fluctuation}")
-
-
 # THIS IS FOR QUICK TESTING
 def main_TEST():
     L = 4
@@ -367,6 +319,98 @@ def main_TEST():
 
     print(f"Fluctuation: {temp_fluctuation}")
 
+
+# THIS IS FOR THE CLUSTER
+def main():
+
+    GAMMA_ARRAY = np.linspace(0, 0.5, 20)
+    L_ARRAY = [4, 5]
+    L = L_ARRAY[int(int(sys.argv[1])/20)]
+    GAMMA = [GAMMA_ARRAY[int(sys.argv[1]) % 20] * np.power(L, 1/6)] # NOTE: WE PUT SCALING HERE AS 1/6
+
+    J= -1.07
+    μ = 1.3 
+    Ωd = 4.0
+    ω = np.pi / 0.8
+    Nb = 10
+    Nd = 1
+    debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
+    kappa = 0
+    alpha = 1
+
+    base_seed = 0  # NOTE: Sets base seed
+
+    temp_fluctuation = []
+    mean_delta_T = []
+    mean_Ts = []
+
+    temp_fluc_std = []
+    deltaT_std = []
+    Ts_std = []
+
+    H1 = H_1(L, Nb)
+    b = create_b(Nb, alpha=alpha, L=L)
+    b_dagger = b.conj().T
+    H_number = b_dagger_b(ω, b, b_dagger, L)
+    H2 = H1 @ (b + b_dagger)
+
+    for G in GAMMA:
+        fluctuations = []
+        deltaTs = []
+        Ts = []
+
+        C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+        H2_scaled = H2 * G
+        for k in range(Nd):
+            Temp_j = []
+            H0 = H_0(J, μ, L, Nb, (base_seed + k))
+            H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+            eigvals, U = np.linalg.eigh(H)
+            ss = rho_ss(U, b, H_number/ω, kappa, ω, L, Nb)
+            for j in range(L):
+                Temp_j.append(cal_localT(j, ss, eigvals, U, Nb, debye_omega, L))
+            delta_T = np.std(Temp_j)
+            mean_T = np.mean(Temp_j)
+            fluctuations.append(delta_T/mean_T)
+            deltaTs.append(delta_T)
+            Ts.append(mean_T)
+    
+        temp_fluctuation.append(np.mean(fluctuations))
+        mean_delta_T.append(np.mean(deltaTs))
+        mean_Ts.append(np.mean(Ts))
+
+        Ts_std.append(np.std(Ts))
+        deltaT_std.append(np.std(deltaTs))
+        temp_fluc_std.append(np.std(fluctuations))
+
+
+        np.savez(
+    f"temp_stat_scaled_gamma_{G:.3f}_Nd_{Nd}_Nb_{Nb}_base_seed_{base_seed}_L_{L}_Original_params.npz",
+    
+    # Parameters
+    scaling = 1/6,
+    J = J,
+    mu = μ,
+    Omega_d = Ωd,
+    omega = ω,
+    Nb = Nb,
+    Nd = Nd,
+    debye_omega = debye_omega,
+    base_seed = base_seed,
+    L = L,
+    scaled_gamma = G,
+    seed_base = base_seed,
+
+    # Computed quantities (convert lists to arrays)
+    mean_fluctuations = temp_fluctuation[0],
+    mean_deltaT = mean_delta_T[0],
+    mean_T = mean_Ts[0],
+    std_fluctuations = temp_fluc_std[0],
+    std_deltaT = deltaT_std[0],
+    std_T = Ts_std[0]
+)
+
 main()
 
 
@@ -378,4 +422,15 @@ Things to keep note of:
     - debye = 10
     - Hard Coded \mu_i values
     - Everything matched (Check Excel sheet)
+
+ALSO, THE ORIGINAL PARAMS ARE:
+
+    J= -1.07
+    μ = 1.3 
+    Ωd = 4.0
+    ω = np.pi / 0.8
+    Nb = 10
+    Nd = 1
+    debye_omega = 4.0
+    
 '''

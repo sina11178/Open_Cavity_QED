@@ -323,10 +323,10 @@ def main_TEST():
 # THIS IS FOR THE CLUSTER
 def main():
 
-    GAMMA_ARRAY = np.linspace(0, 0.5, 20)
+    GAMMA_ARRAY = np.linspace(0, 0.5, 50)
     L_ARRAY = [4, 5]
-    L = L_ARRAY[int(int(sys.argv[1])/20)]
-    GAMMA = [GAMMA_ARRAY[int(sys.argv[1]) % 20] * np.power(L, 1/6)] # NOTE: WE PUT SCALING HERE AS 1/6
+    L = L_ARRAY[int(int(sys.argv[1])/50)]
+    GAMMA = [GAMMA_ARRAY[int(sys.argv[1]) % 50] * np.power(L, 1/6)] # NOTE: WE PUT SCALING HERE AS 1/6
 
     J= -1.07
     μ = 1.3 

@@ -354,6 +354,7 @@ def main():
     H_number = b_dagger_b(ω, b, b_dagger, L)
     H2 = H1 @ (b + b_dagger)
 
+    # NOTE: G here will be the SCALED gamma (NOT the unscaled version)
     for G in GAMMA:
         fluctuations = []
         deltaTs = []

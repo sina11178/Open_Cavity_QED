@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+# Template for ".qsub" files that will be run as batch files by slurm
+
+RUN_NAME=run_231121_smallkappa_KokiCode
+PROJECT_NAME=*project*
+SCRATCH=$HOME/scratch
+SCRATCH_DIR=$SCRATCH/$RUN_NAME/b###
+LOCAL_DIR=$HOME/Projects/$PROJECT_NAME/build
+
+mkdir -p $SCRATCH_DIR
+
+EXEC1=infinitesimal_kappa_new.jl
+
+
+cd $LOCAL_DIR/$RUN_NAME
+cp $EXEC1 $SCRATCH_DIR/
+if [ ! -z "$HELPER1" ] # Check that HELPER isn't empty
+then
+    cp $HELPER1 $SCRATCH_DIR/
+fi
+
+cd $SCRATCH_DIR/
+
+for i in {1..*ItNum*}
+do
+    { time  julia ./$EXEC1  *LLL*   *Gamma*  *hhh*    *runseed*   $i  ; } > temp1.out 2> error1.err 
+done
+
+if [ "$(pwd)" == $SCRATCH_DIR ]; then
+    echo "Removing files"
+    rm $EXEC1
+    if [ ! -z "$HELPER1" ] # Check that HELPER isn't empty
+    then
+	rm $HELPER1
+    fi
+fi

@@ -1,0 +1,35 @@
+#!/bin/bash
+# Job name:
+#SBATCH --job-name=run_231121_smallkappa_KokiCode
+#
+# Partition:
+#SBATCH --partition=*partition*
+#
+# Processors:
+#SBATCH --ntasks=*nnn*
+#SBATCH --nodes=*NNN*
+#SBATCH --cpus-per-task=*ccc*
+#
+# Wall clock limit:
+#SBATCH --time=*ttt*
+#
+# Email at end:
+#SBATCH --mail-user=*myemail*
+#SBATCH --mail-type=END
+#
+# Specify output files:
+#SBATCH -o run_231121_smallkappa_KokiCode.o%j
+#------------------------------------------------------
+
+echo "Starting job run_231121_smallkappa_KokiCode"
+echo "*JobDetails*"
+module load launcher
+
+export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
+export LAUNCHER_RMI=SLURM
+export LAUNCHER_JOB_FILE=run_231121_smallkappa_KokiCode.task
+export LAUNCHER_SCHED=interleaved
+
+$LAUNCHER_DIR/paramrun
+
+echo "Job run_231121_smallkappa_KokiCode complete"

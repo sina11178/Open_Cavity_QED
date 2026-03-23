@@ -333,7 +333,7 @@ def main():
     Ωd = 4.0
     ω = np.pi / 0.8
     Nb = 10
-    Nd = 1
+    Nd = 1500
     debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
     kappa = 0
     alpha = 1

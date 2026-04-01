@@ -1,3 +1,49 @@
+commit eb331f39e42af4ab3118697866bb48ff259241dc
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:40:57 2026 -0500
+
+    Commit before run run_32326_temp_fluc_L_4_5
+
+commit 9e76ea3a2b3094da900628efda28270d39d8a29a
+Merge: e5b4be2 3c621c4
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:37:08 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+    
+    Merging branches
+
+commit e5b4be2dd1f2300d506f9d994b6d8fc94ce29798
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:35:58 2026 -0500
+
+    Any new changes in cluster
+
+commit 3c621c48f64d93b22100cf1352244cbca999eed7
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Wed Apr 1 14:02:23 2026 -0500
+
+    Small changes. Nothing too major. It was to the spin fluctuation code
+
+commit 5b86c560485e539a60cdf42def5f0deb9d030d21
+Merge: d922031 d77e4ea
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 18:51:17 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+
+commit d92203110600394bdd9afd88f980f0e4e7eb69f5
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 18:50:44 2026 -0500
+
+    Changed name RUNNUMBER
+
+commit d77e4ea10fed6f3ee4f733ccdf47f3ed498b3bb1
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Mon Mar 23 18:42:07 2026 -0500
+
+    First sim code created under name 'run_22326_temp_fluc_L_4_5'
+
 commit 0865e7c5bcae1eb74bdc47e1fa72c5b2ea005d22
 Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
 Date:   Mon Mar 23 18:08:24 2026 -0500

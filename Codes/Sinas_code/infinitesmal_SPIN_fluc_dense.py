@@ -85,10 +85,11 @@ def transition_A(U, b, H_number, kappa, omega, L, Nb):
     A = kappa * A
     #eigenvalues, eigenvectors = spla.eigs(A, k=1, sigma=1e-20, which='LM')  # May need to change sigma...
 
-    eigvals_A, eigvecs_A = np.linalg.eig(A) # NOTE: You can also use spla.eigs for different accuracy --> This would be best case scenario for sparse matrices
 
-    idx = np.argmin(np.abs(eigvals_A))
-    #print(eigvecs_A[:, idx])
+    #NOTE: THE SPLA METHOD IS FASTER HERE
+
+    #eigvals_A, eigvecs_A = np.linalg.eig(A) # NOTE: You can also use spla.eigs for different accuracy --> This would be best case scenario for sparse matrices
+    eigvals_A, eigvecs_A = spla.eigs(A, k=1, sigma=1e-30, which='LM') #NOTE: GAMMA=0 DIFFERS BETWEEN THIS AND the numpy method --> Probably due to a degenracy in spectrum of A and they pick 2 different degenerate eigenvectors
 
     return eigvals_A, eigvecs_A
     #return eigenvalues, eigenvectors
@@ -133,16 +134,16 @@ def cal_local_spin(j, rhoss, U, Nb, L):
 
 def main():
     base_seed = 0
-    GAMMA = np.linspace(0, .5, 30)
+    GAMMA = np.linspace(0.001, .85, 50)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     J= -1.07
-    μ = 0.2 
+    μ = 1.2 
     Ωd = 4.0
     ω = np.pi / 0.8
-    L = [2, 3, 4]
+    L = [2, 3, 4, 5, 6, 7]
     Nb = 10
-    Nd = 20
-    debye_omega = 10.0
+    Nd = 10
+    debye_omega = 4.0
     kappa = 0
     alpha = 1
     #All_H = []
@@ -156,6 +157,7 @@ def main():
         H2 = H1 @ (b + b_dagger)
         for G in GAMMA:
             #spin_j = []
+            G = G * np.power(l, 1/2)
             fluctuations = []
             C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
             H2_scaled = H2 * G
@@ -173,10 +175,12 @@ def main():
                 #mean = np.mean(spin_j)
                 #fluctuations.append(delta_spin/mean)
                 fluctuations.append(delta_spin)
+                print("Iteration "+ str(k) + " for L "+ str(l))
             spin_fluctuation.append(np.mean(fluctuations))
         plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
         plt.xlabel("Gamma * √L")
-        #plt.yscale("log")
+        plt.yscale("log")
         plt.ylabel("<δS>")
         plt.title("Spin Fluctuations")
         plt.legend()

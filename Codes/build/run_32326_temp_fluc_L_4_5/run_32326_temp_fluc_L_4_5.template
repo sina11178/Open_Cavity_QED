@@ -3,6 +3,7 @@
 
 RUN_NAME=run_32326_temp_fluc_L_4_5
 PROJECT_NAME=*project*
+SCRATCH=$HOME/scratch
 SCRATCH_DIR=$SCRATCH/$RUN_NAME/b###
 LOCAL_DIR=$HOME/$PROJECT_NAME/build
 

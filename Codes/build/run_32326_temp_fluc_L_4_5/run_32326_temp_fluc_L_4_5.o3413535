@@ -338,3 +338,4 @@ run_32326_temp_fluc_L_4_5_24.qsub: line 14: cd: /home/sxr190099/Codes/build/run_
 run_32326_temp_fluc_L_4_5_29.qsub: line 14: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
 run_32326_temp_fluc_L_4_5_58.qsub: line 14: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
 run_32326_temp_fluc_L_4_5_51.qsub: line 14: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+slurmstepd-g-06-03: error: *** JOB 3413535 ON g-06-03 CANCELLED AT 2026-03-23T22:48:01 ***

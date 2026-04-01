@@ -1,0 +1,583 @@
+Starting job run_32326_temp_fluc_L_4_5
+WARNING (04/01/26 14:45:42): LAUNCHER_WORKDIR variable not set. Using current directory.
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    1
+   Working directory:  /home/sxr190099/Open_Cavity_QED/Codes/build/run_32326_temp_fluc_L_4_5
+   Processes per host: 128
+   Total processes:    128
+   Total jobs:         128
+   Scheduling method:  interleaved
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+using /tmp/launcher.3542281.hostlist.OERgGycf to get hosts
+starting job on g-06-02
+Warning: Permanently added 'g-06-02,10.247.225.96' (ECDSA) to the list of known hosts.
+Lmod has detected the following error: The following module(s) are unknown:
+"git"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "git"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Launcher: Task 109 running job 110 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 110 completed in 0 seconds.
+Launcher: Task 109 done. Exiting.
+Launcher: Task 47 running job 48 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 17 running job 18 on g-06-02 (bash run_32326_temp_fluc_L_4_5_17.qsub)
+Launcher: Task 37 running job 38 on g-06-02 (bash run_32326_temp_fluc_L_4_5_37.qsub)
+Launcher: Job 48 completed in 0 seconds.
+Launcher: Task 47 done. Exiting.
+Launcher: Task 116 running job 117 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 117 completed in 0 seconds.
+run_32326_temp_fluc_L_4_5_37.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_17.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 116 done. Exiting.
+Launcher: Task 42 running job 43 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 33 running job 34 on g-06-02 (bash run_32326_temp_fluc_L_4_5_33.qsub)
+Launcher: Job 43 completed in 0 seconds.
+Launcher: Task 42 done. Exiting.
+Launcher: Task 64 running job 65 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 65 completed in 0 seconds.
+Launcher: Task 64 done. Exiting.
+run_32326_temp_fluc_L_4_5_33.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 88 running job 89 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 70 running job 71 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 89 completed in 0 seconds.
+Launcher: Task 88 done. Exiting.
+Launcher: Job 71 completed in 0 seconds.
+Launcher: Task 70 done. Exiting.
+Launcher: Task 87 running job 88 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 88 completed in 0 seconds.
+Launcher: Task 87 done. Exiting.
+Launcher: Task 28 running job 29 on g-06-02 (bash run_32326_temp_fluc_L_4_5_28.qsub)
+Launcher: Task 118 running job 119 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 119 completed in 0 seconds.
+Launcher: Task 118 done. Exiting.
+run_32326_temp_fluc_L_4_5_28.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 29 running job 30 on g-06-02 (bash run_32326_temp_fluc_L_4_5_29.qsub)
+Launcher: Task 4 running job 5 on g-06-02 (bash run_32326_temp_fluc_L_4_5_4.qsub)
+run_32326_temp_fluc_L_4_5_29.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_4.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 23 running job 24 on g-06-02 (bash run_32326_temp_fluc_L_4_5_23.qsub)
+Launcher: Task 94 running job 95 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 95 completed in 0 seconds.
+run_32326_temp_fluc_L_4_5_23.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 94 done. Exiting.
+Launcher: Task 122 running job 123 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 123 completed in 0 seconds.
+Launcher: Task 122 done. Exiting.
+Launcher: Task 7 running job 8 on g-06-02 (bash run_32326_temp_fluc_L_4_5_7.qsub)
+Launcher: Task 21 running job 22 on g-06-02 (bash run_32326_temp_fluc_L_4_5_21.qsub)
+run_32326_temp_fluc_L_4_5_7.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 81 running job 82 on g-06-02 (echo "Fake run")
+Fake run
+run_32326_temp_fluc_L_4_5_21.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Job 82 completed in 0 seconds.
+Launcher: Task 81 done. Exiting.
+Launcher: Task 11 running job 12 on g-06-02 (bash run_32326_temp_fluc_L_4_5_11.qsub)
+run_32326_temp_fluc_L_4_5_11.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 92 running job 93 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 93 completed in 0 seconds.
+Launcher: Task 92 done. Exiting.
+Launcher: Task 125 running job 126 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 126 completed in 0 seconds.
+Launcher: Task 125 done. Exiting.
+Launcher: Task 126 running job 127 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 127 completed in 0 seconds.
+Launcher: Task 126 done. Exiting.
+Launcher: Task 65 running job 66 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 66 completed in 0 seconds.
+Launcher: Task 65 done. Exiting.
+Launcher: Task 15 running job 16 on g-06-02 (bash run_32326_temp_fluc_L_4_5_15.qsub)
+run_32326_temp_fluc_L_4_5_15.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 2 running job 3 on g-06-02 (bash run_32326_temp_fluc_L_4_5_2.qsub)
+Launcher: Task 96 running job 97 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 97 completed in 0 seconds.
+Launcher: Task 16 running job 17 on g-06-02 (bash run_32326_temp_fluc_L_4_5_16.qsub)
+Launcher: Task 44 running job 45 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 96 done. Exiting.
+Launcher: Task 101 running job 102 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 45 completed in 0 seconds.
+Launcher: Job 102 completed in 0 seconds.
+Launcher: Task 44 done. Exiting.
+Launcher: Task 50 running job 51 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 101 done. Exiting.
+Launcher: Job 51 completed in 0 seconds.
+run_32326_temp_fluc_L_4_5_2.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 50 done. Exiting.
+run_32326_temp_fluc_L_4_5_16.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 8 running job 9 on g-06-02 (bash run_32326_temp_fluc_L_4_5_8.qsub)
+run_32326_temp_fluc_L_4_5_8.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 107 running job 108 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 108 completed in 0 seconds.
+Launcher: Task 107 done. Exiting.
+Launcher: Task 78 running job 79 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 79 completed in 0 seconds.
+Launcher: Task 46 running job 47 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 78 done. Exiting.
+Launcher: Job 47 completed in 0 seconds.
+Launcher: Task 46 done. Exiting.
+Launcher: Task 97 running job 98 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 98 completed in 0 seconds.
+Launcher: Task 97 done. Exiting.
+Launcher: Task 120 running job 121 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 121 completed in 0 seconds.
+Launcher: Task 120 done. Exiting.
+Launcher: Task 113 running job 114 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 114 completed in 0 seconds.
+Launcher: Task 113 done. Exiting.
+Launcher: Task 3 running job 4 on g-06-02 (bash run_32326_temp_fluc_L_4_5_3.qsub)
+run_32326_temp_fluc_L_4_5_3.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 36 running job 37 on g-06-02 (bash run_32326_temp_fluc_L_4_5_36.qsub)
+Launcher: Task 35 running job 36 on g-06-02 (bash run_32326_temp_fluc_L_4_5_35.qsub)
+run_32326_temp_fluc_L_4_5_36.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_35.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 99 running job 100 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 100 completed in 0 seconds.
+Launcher: Task 99 done. Exiting.
+Launcher: Task 63 running job 64 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 64 completed in 0 seconds.
+Launcher: Task 63 done. Exiting.
+Launcher: Task 98 running job 99 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 99 completed in 0 seconds.
+Launcher: Task 98 done. Exiting.
+Launcher: Task 83 running job 84 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 111 running job 112 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 84 completed in 0 seconds.
+Launcher: Task 83 done. Exiting.
+Launcher: Job 112 completed in 0 seconds.
+Launcher: Task 111 done. Exiting.
+Launcher: Task 19 running job 20 on g-06-02 (bash run_32326_temp_fluc_L_4_5_19.qsub)
+run_32326_temp_fluc_L_4_5_19.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 95 running job 96 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 96 completed in 0 seconds.
+Launcher: Task 41 running job 42 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 95 done. Exiting.
+Launcher: Job 42 completed in 0 seconds.
+Launcher: Task 41 done. Exiting.
+Launcher: Task 67 running job 68 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 106 running job 107 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 72 running job 73 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 68 completed in 0 seconds.
+Launcher: Task 67 done. Exiting.
+Launcher: Job 73 completed in 0 seconds.
+Launcher: Job 107 completed in 0 seconds.
+Launcher: Task 72 done. Exiting.
+Launcher: Task 106 done. Exiting.
+Launcher: Task 93 running job 94 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 94 completed in 0 seconds.
+Launcher: Task 93 done. Exiting.
+Launcher: Task 18 running job 19 on g-06-02 (bash run_32326_temp_fluc_L_4_5_18.qsub)
+Launcher: Task 62 running job 63 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 63 completed in 0 seconds.
+run_32326_temp_fluc_L_4_5_18.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 62 done. Exiting.
+Launcher: Task 102 running job 103 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 103 completed in 0 seconds.
+Launcher: Task 102 done. Exiting.
+Launcher: Task 34 running job 35 on g-06-02 (bash run_32326_temp_fluc_L_4_5_34.qsub)
+Launcher: Task 100 running job 101 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 101 completed in 0 seconds.
+Launcher: Task 100 done. Exiting.
+run_32326_temp_fluc_L_4_5_34.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 58 running job 59 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 59 completed in 0 seconds.
+Launcher: Task 58 done. Exiting.
+Launcher: Task 22 running job 23 on g-06-02 (bash run_32326_temp_fluc_L_4_5_22.qsub)
+Launcher: Task 73 running job 74 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 74 completed in 0 seconds.
+Launcher: Task 73 done. Exiting.
+run_32326_temp_fluc_L_4_5_22.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 30 running job 31 on g-06-02 (bash run_32326_temp_fluc_L_4_5_30.qsub)
+Launcher: Task 49 running job 50 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 50 completed in 0 seconds.
+Launcher: Task 49 done. Exiting.
+run_32326_temp_fluc_L_4_5_30.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 0 running job 1 on g-06-02 (bash run_32326_temp_fluc_L_4_5_0.qsub)
+Launcher: Task 112 running job 113 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 113 completed in 0 seconds.
+Launcher: Task 112 done. Exiting.
+Launcher: Task 14 running job 15 on g-06-02 (bash run_32326_temp_fluc_L_4_5_14.qsub)
+run_32326_temp_fluc_L_4_5_0.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_14.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 24 running job 25 on g-06-02 (bash run_32326_temp_fluc_L_4_5_24.qsub)
+Launcher: Task 79 running job 80 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 56 running job 57 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 54 running job 55 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 80 completed in 0 seconds.
+Launcher: Job 57 completed in 0 seconds.
+Launcher: Task 5 running job 6 on g-06-02 (bash run_32326_temp_fluc_L_4_5_5.qsub)
+Launcher: Task 79 done. Exiting.
+Launcher: Task 124 running job 125 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 56 done. Exiting.
+Launcher: Job 55 completed in 0 seconds.
+Launcher: Task 54 done. Exiting.
+run_32326_temp_fluc_L_4_5_24.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Job 125 completed in 0 seconds.
+Launcher: Task 124 done. Exiting.
+Launcher: Task 82 running job 83 on g-06-02 (echo "Fake run")
+Fake run
+run_32326_temp_fluc_L_4_5_5.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Job 83 completed in 0 seconds.
+Launcher: Task 82 done. Exiting.
+Launcher: Task 13 running job 14 on g-06-02 (bash run_32326_temp_fluc_L_4_5_13.qsub)
+Launcher: Task 121 running job 122 on g-06-02 (echo "Fake run")
+Fake run
+run_32326_temp_fluc_L_4_5_13.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Job 122 completed in 0 seconds.
+Launcher: Task 121 done. Exiting.
+Launcher: Task 51 running job 52 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 76 running job 77 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 59 running job 60 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 77 completed in 0 seconds.
+Launcher: Job 52 completed in 0 seconds.
+Launcher: Task 76 done. Exiting.
+Launcher: Task 51 done. Exiting.
+Launcher: Job 60 completed in 0 seconds.
+Launcher: Task 59 done. Exiting.
+Launcher: Task 123 running job 124 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 91 running job 92 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 124 completed in 0 seconds.
+Launcher: Task 123 done. Exiting.
+Launcher: Job 92 completed in 0 seconds.
+Launcher: Task 53 running job 54 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 91 done. Exiting.
+Launcher: Job 54 completed in 0 seconds.
+Launcher: Task 53 done. Exiting.
+Launcher: Task 60 running job 61 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 61 completed in 0 seconds.
+Launcher: Task 60 done. Exiting.
+Launcher: Task 48 running job 49 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 12 running job 13 on g-06-02 (bash run_32326_temp_fluc_L_4_5_12.qsub)
+Launcher: Job 49 completed in 0 seconds.
+Launcher: Task 48 done. Exiting.
+run_32326_temp_fluc_L_4_5_12.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 25 running job 26 on g-06-02 (bash run_32326_temp_fluc_L_4_5_25.qsub)
+Launcher: Task 104 running job 105 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 114 running job 115 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 105 completed in 0 seconds.
+Launcher: Task 104 done. Exiting.
+Launcher: Task 90 running job 91 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 115 completed in 0 seconds.
+Launcher: Task 38 running job 39 on g-06-02 (bash run_32326_temp_fluc_L_4_5_38.qsub)
+Launcher: Job 91 completed in 0 seconds.
+Launcher: Task 90 done. Exiting.
+Launcher: Task 114 done. Exiting.
+run_32326_temp_fluc_L_4_5_25.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_38.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 31 running job 32 on g-06-02 (bash run_32326_temp_fluc_L_4_5_31.qsub)
+Launcher: Task 9 running job 10 on g-06-02 (bash run_32326_temp_fluc_L_4_5_9.qsub)
+Launcher: Task 57 running job 58 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 117 running job 118 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 118 completed in 0 seconds.
+Launcher: Task 117 done. Exiting.
+Launcher: Job 58 completed in 0 seconds.
+Launcher: Task 57 done. Exiting.
+run_32326_temp_fluc_L_4_5_31.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_9.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 55 running job 56 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 1 running job 2 on g-06-02 (bash run_32326_temp_fluc_L_4_5_1.qsub)
+Launcher: Task 71 running job 72 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 56 completed in 0 seconds.
+Launcher: Task 55 done. Exiting.
+Launcher: Job 72 completed in 0 seconds.
+Launcher: Task 84 running job 85 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 69 running job 70 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 71 done. Exiting.
+Launcher: Task 6 running job 7 on g-06-02 (bash run_32326_temp_fluc_L_4_5_6.qsub)
+Launcher: Task 119 running job 120 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 85 completed in 0 seconds.
+Launcher: Task 77 running job 78 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 70 completed in 0 seconds.
+Launcher: Task 84 done. Exiting.
+Launcher: Task 69 done. Exiting.
+Launcher: Job 120 completed in 0 seconds.
+Launcher: Job 78 completed in 0 seconds.
+Launcher: Task 119 done. Exiting.
+Launcher: Task 77 done. Exiting.
+run_32326_temp_fluc_L_4_5_1.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_6.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 86 running job 87 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 39 running job 40 on g-06-02 (bash run_32326_temp_fluc_L_4_5_39.qsub)
+Launcher: Task 80 running job 81 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 20 running job 21 on g-06-02 (bash run_32326_temp_fluc_L_4_5_20.qsub)
+Launcher: Task 127 running job 128 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 10 running job 11 on g-06-02 (bash run_32326_temp_fluc_L_4_5_10.qsub)
+Launcher: Job 87 completed in 0 seconds.
+Launcher: Job 81 completed in 0 seconds.
+Launcher: Task 86 done. Exiting.
+Launcher: Job 128 completed in 0 seconds.
+Launcher: Task 103 running job 104 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 127 done. Exiting.
+Launcher: Job 104 completed in 1 seconds.
+Launcher: Task 103 done. Exiting.
+Launcher: Task 80 done. Exiting.
+run_32326_temp_fluc_L_4_5_10.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_20.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+run_32326_temp_fluc_L_4_5_39.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 45 running job 46 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 40 running job 41 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 46 completed in 0 seconds.
+Launcher: Task 45 done. Exiting.
+Launcher: Task 26 running job 27 on g-06-02 (bash run_32326_temp_fluc_L_4_5_26.qsub)
+Launcher: Task 52 running job 53 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 66 running job 67 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 43 running job 44 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 41 completed in 0 seconds.
+Launcher: Job 53 completed in 0 seconds.
+Launcher: Job 67 completed in 0 seconds.
+Launcher: Job 44 completed in 0 seconds.
+Launcher: Task 66 done. Exiting.
+Launcher: Task 40 done. Exiting.
+Launcher: Task 52 done. Exiting.
+Launcher: Task 43 done. Exiting.
+run_32326_temp_fluc_L_4_5_26.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 27 running job 28 on g-06-02 (bash run_32326_temp_fluc_L_4_5_27.qsub)
+Launcher: Task 68 running job 69 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 105 running job 106 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 115 running job 116 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 69 completed in 0 seconds.
+Launcher: Job 106 completed in 0 seconds.
+Launcher: Task 108 running job 109 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 68 done. Exiting.
+Launcher: Task 74 running job 75 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 116 completed in 0 seconds.
+Launcher: Task 105 done. Exiting.
+Launcher: Task 32 running job 33 on g-06-02 (bash run_32326_temp_fluc_L_4_5_32.qsub)
+Launcher: Task 115 done. Exiting.
+Launcher: Task 89 running job 90 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Job 109 completed in 1 seconds.
+Launcher: Task 85 running job 86 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 75 running job 76 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 108 done. Exiting.
+Launcher: Job 75 completed in 1 seconds.
+Launcher: Job 90 completed in 0 seconds.
+Launcher: Job 86 completed in 0 seconds.
+Launcher: Task 110 running job 111 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 89 done. Exiting.
+Launcher: Task 61 running job 62 on g-06-02 (echo "Fake run")
+Fake run
+Launcher: Task 74 done. Exiting.
+Launcher: Task 85 done. Exiting.
+Launcher: Job 76 completed in 0 seconds.
+Launcher: Job 111 completed in 0 seconds.
+Launcher: Task 75 done. Exiting.
+Launcher: Job 62 completed in 0 seconds.
+run_32326_temp_fluc_L_4_5_27.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Launcher: Task 110 done. Exiting.
+Launcher: Task 61 done. Exiting.
+run_32326_temp_fluc_L_4_5_32.qsub: line 15: cd: /home/sxr190099/Codes/build/run_32326_temp_fluc_L_4_5: No such file or directory
+Removing files
+Launcher: Job 1 completed in 364 seconds.
+Launcher: Task 0 done. Exiting.
+Removing files
+Launcher: Job 12 completed in 2165 seconds.
+Launcher: Task 11 done. Exiting.
+Removing files
+Launcher: Job 20 completed in 2174 seconds.
+Launcher: Task 19 done. Exiting.
+Removing files
+Launcher: Job 8 completed in 2240 seconds.
+Launcher: Task 7 done. Exiting.
+Removing files
+Launcher: Job 10 completed in 2226 seconds.
+Launcher: Task 9 done. Exiting.
+Removing files
+Launcher: Job 13 completed in 2229 seconds.
+Launcher: Task 12 done. Exiting.
+Removing files
+Launcher: Job 7 completed in 2307 seconds.
+Launcher: Task 6 done. Exiting.
+Removing files
+Launcher: Job 17 completed in 2401 seconds.
+Launcher: Task 16 done. Exiting.
+Removing files
+Launcher: Job 4 completed in 2432 seconds.
+Launcher: Task 3 done. Exiting.
+Removing files
+Launcher: Job 5 completed in 2441 seconds.
+Launcher: Task 4 done. Exiting.
+Removing files
+Launcher: Job 3 completed in 2448 seconds.
+Launcher: Task 2 done. Exiting.
+Removing files
+Launcher: Job 9 completed in 2460 seconds.
+Launcher: Task 8 done. Exiting.
+Removing files
+Launcher: Job 19 completed in 2467 seconds.
+Launcher: Task 18 done. Exiting.
+Removing files
+Launcher: Job 16 completed in 2479 seconds.
+Launcher: Task 15 done. Exiting.
+Removing files
+Launcher: Job 14 completed in 2490 seconds.
+Launcher: Task 13 done. Exiting.
+Removing files
+Launcher: Job 15 completed in 2497 seconds.
+Removing files
+Launcher: Task 14 done. Exiting.
+Launcher: Job 11 completed in 2488 seconds.
+Launcher: Task 10 done. Exiting.
+Removing files
+Launcher: Job 18 completed in 2517 seconds.
+Removing files
+Launcher: Task 17 done. Exiting.
+Launcher: Job 2 completed in 2497 seconds.
+Launcher: Task 1 done. Exiting.
+Removing files
+Launcher: Job 6 completed in 2515 seconds.
+Launcher: Task 5 done. Exiting.
+Removing files
+Launcher: Job 21 completed in 2743 seconds.
+Launcher: Task 20 done. Exiting.
+Removing files
+Launcher: Job 35 completed in 5619 seconds.
+Launcher: Task 34 done. Exiting.
+Removing files
+Launcher: Job 26 completed in 5617 seconds.
+Launcher: Task 25 done. Exiting.
+Removing files
+Launcher: Job 24 completed in 5658 seconds.
+Launcher: Task 23 done. Exiting.
+Removing files
+Launcher: Job 37 completed in 5662 seconds.
+Removing files
+Launcher: Task 36 done. Exiting.
+Launcher: Job 31 completed in 5658 seconds.
+Launcher: Task 30 done. Exiting.
+Removing files
+Launcher: Job 30 completed in 5671 seconds.
+Launcher: Task 29 done. Exiting.
+Removing files
+Launcher: Job 28 completed in 5656 seconds.
+Launcher: Task 27 done. Exiting.
+Removing files
+Launcher: Job 22 completed in 5685 seconds.
+Launcher: Task 21 done. Exiting.
+Removing files
+Launcher: Job 25 completed in 5683 seconds.
+Launcher: Task 24 done. Exiting.
+Removing files
+Launcher: Job 29 completed in 5743 seconds.
+Launcher: Task 28 done. Exiting.
+Removing files
+Launcher: Job 34 completed in 5770 seconds.
+Launcher: Task 33 done. Exiting.
+Removing files
+Launcher: Job 36 completed in 5781 seconds.
+Launcher: Task 35 done. Exiting.
+Removing files
+Launcher: Job 38 completed in 5790 seconds.
+Launcher: Task 37 done. Exiting.
+Removing files
+Launcher: Job 27 completed in 5770 seconds.
+Launcher: Task 26 done. Exiting.
+Removing files
+Launcher: Job 23 completed in 5784 seconds.
+Launcher: Task 22 done. Exiting.
+Removing files
+Launcher: Job 40 completed in 5780 seconds.
+Launcher: Task 39 done. Exiting.
+Removing files
+Launcher: Job 39 completed in 5789 seconds.
+Launcher: Task 38 done. Exiting.
+Removing files
+Launcher: Job 32 completed in 5788 seconds.
+Launcher: Task 31 done. Exiting.
+Removing files
+Launcher: Job 33 completed in 5784 seconds.
+Launcher: Task 32 done. Exiting.
+Launcher: Done. Job exited without errors
+Job run_32326_temp_fluc_L_4_5 complete

@@ -182,13 +182,23 @@ def cal_magnetization(rhoss, U, magnetization_op):
 
     return magnetization_ss
 
+
+# RETURNS EQ 6 of HUSE PAPER
 def cal_magnetization_fourier_mode(rhoss, U, magnetization_op):
     rho_ss_mat = np.diag(rhoss)
     mat = U.conj().T @ magnetization_op @ U
     mat = mat @ rho_ss_mat
+    mat = (mat * mat.conj()).real # Take the magnitude squared of the Fourier mode magnetization
     magnetization_ss = np.trace(mat)
 
-    return magnetization_ss
+    mat_norm = magnetization_op.conj().T @ magnetization_op
+    mat_norm = U.conj().T @ mat_norm @ U
+    mat_norm = mat_norm @ rho_ss_mat
+    magnetization_norm = np.trace(mat_norm)
+
+    f  = 1 - magnetization_ss / magnetization_norm
+
+    return f
 
 def cal_two_point_correlation(rhoss, U, corr_op):
     rho_ss_mat = np.diag(rhoss)
@@ -298,7 +308,7 @@ def main():
             plt.xlabel("Gamma * √L")
             #plt.xscale("log")
             #plt.yscale("log")
-            plt.ylabel("|<M_FM>|")
+            plt.ylabel("|<f>|")
             plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
             plt.legend()
 
@@ -346,7 +356,7 @@ def main():
 # NOTE: Faster but uses more memory --> Parallelize over disorder realizations (Nd) for each gamma and L; use for laptop,but not for cluster
 def main_parallelize():
     base_seed = 0
-    GAMMA = np.linspace(0.001, 1, 50)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.001, 0.5, 35)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     J= -1.07
     μ = 1.2 
@@ -358,7 +368,7 @@ def main_parallelize():
     debye_omega = 4.0
     kappa = 0
     alpha = 1
-    type = "2p" # "N" for normal magnetization graphing, "FM" for Fourier mode magnetization graphing, "2p" for two point correlation graphing
+    type = "FM" # "N" for normal magnetization graphing, "FM" for Fourier mode magnetization graphing, "2p" for two point correlation graphing
 
     if type == "N":  # Normal magnetization graphing
         for l in L:
@@ -423,7 +433,7 @@ def main_parallelize():
             plt.xlabel("Gamma * √L")
             #plt.xscale("log")
             #plt.yscale("log")
-            plt.ylabel("|<M_FM>|")
+            plt.ylabel("|<f>|")
             plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
             plt.legend()
 

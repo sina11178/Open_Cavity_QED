@@ -9,6 +9,26 @@ from scipy.optimize import brentq
 
 # Hamiltonian parts
 
+'''
+4/6/26
+
+NOTE to self:
+
+- For this code, I have used Kokis sign convention for sig_Z:
+    - |0> --> -1
+    - |1> --> +1
+- This sign convention was used for my temp fluctuation code, as well as this code
+    - Going on, I keep using this sign convention unless specified
+    - |0> --> -1
+    - |1> --> +1
+- I got magnetization at each site using -sigma_zj (rather than using koki's sign convention); the results are the same, as I only plot std here
+    - If I plotted magnetization at each site, I would see a sign difference at most; however, the physics would remain the same
+
+
+'''
+
+
+
 def H_0(J, mu, L, Nb, Nd): # Nb --> Number of bosons
     dim = (2**L)
     H = np.zeros((dim, dim), dtype=np.complex128)
@@ -140,7 +160,7 @@ def main():
     μ = 1.2 
     Ωd = 4.0
     ω = np.pi / 0.8
-    L = [2, 3, 4, 5, 6, 7]
+    L = [2, 3, 4]
     Nb = 10
     Nd = 10
     debye_omega = 4.0

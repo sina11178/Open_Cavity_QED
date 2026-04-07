@@ -272,7 +272,7 @@ def main():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<M>|")
-            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
+            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed) + " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()
@@ -309,7 +309,7 @@ def main():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<f>|")
-            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
+            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed) + " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()
@@ -345,7 +345,7 @@ def main():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<M_2p>|")
-            plt.title("2-point correlation - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
+            plt.title("2-point correlation - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()
@@ -398,7 +398,7 @@ def main_parallelize():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<M>|")
-            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
+            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()
@@ -434,7 +434,7 @@ def main_parallelize():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<f>|")
-            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed))
+            plt.title("Spin Magnetization - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()
@@ -468,7 +468,7 @@ def main_parallelize():
             #plt.xscale("log")
             #plt.yscale("log")
             plt.ylabel("|<M_2p>|")
-            plt.title("2-point correlation - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed) + " , points = " + str(len(GAMMA)))
+            plt.title("2-point correlation - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
             plt.legend()
 
         plt.show()

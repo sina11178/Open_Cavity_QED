@@ -5,6 +5,8 @@ import scipy.sparse as sp
 import scipy.sparse.linalg as spla
 import pandas as pd
 from scipy.optimize import brentq
+from joblib import Parallel, delayed
+
 # For our model, we will consider (bosons) ⊗ (spin)
 
 # Hamiltonian parts
@@ -152,6 +154,23 @@ def cal_local_spin(j, rhoss, U, Nb, L):
 
     return local_spin_ss
 
+
+def single_disorder(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
+    spin_j = []
+    H0 = H_0(J, μ, l, Nb, k + base_seed)
+    H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+    eigvals, U = np.linalg.eigh(H)
+    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
+    for j in range(l):
+        spin_j.append(cal_local_spin(j, ss, U, Nb, l))
+    delta_spin = np.var(spin_j)
+
+    return delta_spin
+
+
+
+
 def main():
     base_seed = 0
     GAMMA = np.linspace(0.001, .85, 50)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
@@ -202,10 +221,61 @@ def main():
         plt.xlabel("Gamma * √L")
         plt.yscale("log")
         plt.ylabel("<δS>")
-        plt.title("Spin Fluctuations")
+        plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
         plt.legend()
 
     plt.show()
     #print(f"Fluctuation: {spin_fluctuation}")
 
-main()
+def main_parallelize():
+    base_seed = 0
+    GAMMA = np.linspace(0.001, .1, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    #GAMMA = [0]
+    J= 0
+    μ = 0.05 
+    Ωd = 0
+    #Ωd = 0
+    ω = np.pi / 0.8
+    L = [2, 3, 4, 5]
+    Nb = 2
+    Nd = 10
+    debye_omega = 4.0
+    #debye_omega = 0
+    kappa = 0
+    alpha = 1
+    #All_H = []
+
+    for l in L:
+        spin_fluctuation = []
+        H1 = H_1(l, Nb)
+        b = create_b(Nb, alpha=alpha, L=l)
+        b_dagger = b.conj().T
+        H_number = b_dagger_b(ω, b, b_dagger, l)
+        H2 = H1 @ (b + b_dagger)
+        for G in GAMMA:
+            #spin_j = []
+            G = G * np.power(l, 1/2)
+            fluctuations = []
+            C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+            H2_scaled = H2 * G
+            H_number_norm = H_number / ω
+            fluctuations = Parallel(n_jobs=-1)(
+                    delayed(single_disorder)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
+                                            H2_scaled, H_number, H_number_norm, b, kappa, ω)
+                    for k in range(Nd)
+                )
+            spin_fluctuation.append(np.mean(fluctuations))
+        print("Fluctuations for L = " + str(l) + " Complete")
+        plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
+        plt.xlabel("Gamma * √L")
+        #plt.yscale("log")
+        plt.ylabel("<δS>")
+        plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        plt.legend()
+
+    plt.show()
+    #print(f"Fluctuation: {spin_fluctuation}")
+
+
+main_parallelize()

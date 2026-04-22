@@ -229,15 +229,15 @@ def main():
 
 def main_parallelize():
     base_seed = 0
-    GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.001, .4, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     J= -1.07
-    μ = 1.2 
-    Ωd = 1
+    μ = 1.3 
+    Ωd = 4
     #Ωd = 0
-    ω = 10*np.pi / 0.8
-    L = [2, 3, 4]
-    Nb = 15
+    ω = np.pi/0.8
+    L = [2, 3, 4, 5, 6]
+    Nb = 10
     Nd = 10
     debye_omega = 4.0
     #debye_omega = 0
@@ -254,6 +254,7 @@ def main_parallelize():
         H2 = H1 @ (b + b_dagger)
         for G in GAMMA:
             #spin_j = []
+            # G = G/ np.power(l, 1/2)
             G = G * np.power(l, 1/2)
             fluctuations = []
             C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1

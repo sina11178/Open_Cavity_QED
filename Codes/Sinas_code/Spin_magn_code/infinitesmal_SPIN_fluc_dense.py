@@ -229,14 +229,14 @@ def main():
 
 def main_parallelize():
     base_seed = 0
-    GAMMA = np.linspace(0.001, .4, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     J= -1.07
     μ = 1.3 
     Ωd = 4
     #Ωd = 0
     ω = np.pi/0.8
-    L = [2, 3, 4, 5, 6]
+    L = [2, 3, 4, 5]
     Nb = 10
     Nd = 10
     debye_omega = 4.0

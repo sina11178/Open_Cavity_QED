@@ -232,7 +232,9 @@ def main_parallelize():
     GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     J= -1.07
-    μ = 1.3 
+    #J = -0.5
+    μ = 1.3
+    #μ = 0.6 
     Ωd = 4
     #Ωd = 0
     ω = np.pi/0.8

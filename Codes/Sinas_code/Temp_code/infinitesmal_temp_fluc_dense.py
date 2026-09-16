@@ -6,6 +6,7 @@ import scipy.sparse.linalg as spla
 import pandas as pd
 from scipy.optimize import brentq
 import sys
+from joblib import Parallel, delayed
 # For our model, we will consider (bosons) ⊗ (spin)
 
 # Hamiltonian parts
@@ -186,7 +187,7 @@ def cal_ecur(sig_jy_squared, rho_ss, eigvals, Tem, debye, small_gamma = 1):
 
     #mask = np.abs(dE) > 1e-12
     mask = np.abs(dE) != 0
-
+    #print(Tem)
     bose = np.zeros_like(dE)
 
     small = mask & (np.abs(dE/Tem) < 1e-6)
@@ -198,13 +199,21 @@ def cal_ecur(sig_jy_squared, rho_ss, eigvals, Tem, debye, small_gamma = 1):
     large = x < 700
     bose[large & ~small & mask] = 1/(np.exp(x[large & ~small & mask]) - 1)
 
-    ecur = np.sum(
-        (dE**2) *
-        sig_jy_squared *
-        bose *
-        rho_ss[None,:] /
-        (dE**4 + debye**4)
-    )
+    # ADDED TO AVOID DIVISION BY ZERO ERRORS
+    denom = dE**4 + debye**4 
+    contrib = np.where(mask,
+        (dE**2) * sig_jy_squared * bose * rho_ss[None, :] / np.where(mask, denom, 1.0), 0.0)
+
+    ecur = np.sum(contrib)
+
+    # NOTE: WHAT WAS PREVIOUSLY DONE
+    #ecur = np.sum(
+    #    (dE**2) *
+    #    sig_jy_squared *
+    #    bose *
+    #    rho_ss[None,:] /
+    #    (dE**4 + debye**4)
+    #)
 
     return ecur
 
@@ -215,6 +224,8 @@ def cal_slope(sig_jy_squared, rho_ss, eigvals, debye, small_gamma = 1):
     for m in range(len(eigvals)):
         for n in range(len(eigvals)):
             dE = eigvals[m] - eigvals[n]
+            if abs(dE) < 1e-12:
+                continue
 #                dE = eigvals[m] - eigvals[n]
             slope += dE* sig_jy_squared[m, n] * rho_ss[n] / (dE**4 + debye**4)
     return slope    
@@ -256,6 +267,42 @@ def cal_localT(j, rhoss, eigvals, U, Nb, debye, L, small_gamma = 1):
         Tem[i+1] = (ecur[i-1]*Tem[i] - Tem[i-1]*ecur[i])/(ecur[i-1]-ecur[i])
 
     #print(f"  --> final T={Tem[ite-1]:.6f}")
+
+    return Tem[ite-1]
+
+
+# NOTE: ADDED TO AVOID ISSUES WITH SECANT METHOD
+def cal_localT_new(j, rhoss, eigvals, U, Nb, debye, L, small_gamma = 1):
+    sigma_jy_squared = sigma_jy_2(j, L, U, Nb)
+
+    ite = 15
+    Tem = np.zeros(ite, dtype=np.float64)
+    ecur = np.zeros(ite, dtype=np.float64)
+    slope = cal_slope(sigma_jy_squared, rhoss, eigvals, debye, small_gamma)
+
+    if slope == 0:
+        return np.nan  # flat slope, can't take a secant step
+
+    Tem[0] = 500
+    ecur[0] = cal_ecur(sigma_jy_squared, rhoss, eigvals, Tem[0], debye, small_gamma)
+    Tem[1] = Tem[0] - ecur[0]/slope
+
+    for i in range(1, ite-1):
+        ecur[i] = cal_ecur(sigma_jy_squared, rhoss, eigvals, Tem[i], debye, small_gamma)
+        if np.abs(ecur[i] - ecur[i-1]) < 1e-12 and np.abs(ecur[i]) < 1e-12:
+            Tem[ite-1] = Tem[i]
+            break
+
+        denom = ecur[i-1] - ecur[i]
+        if denom == 0:
+            # secant method stalled (ecur didn't change between guesses)
+            Tem[ite-1] = Tem[i]
+            break
+
+        Tem[i+1] = (ecur[i-1]*Tem[i] - Tem[i-1]*ecur[i]) / denom
+    #else:
+    #    # loop completed without break — use last computed value
+    #    Tem[ite-1] = Tem[ite-2]
 
     return Tem[ite-1]
 
@@ -412,8 +459,86 @@ def main():
     std_T = Ts_std[0]
 )
 
-main()
 
+
+
+def single_disorder(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number,kappa, ω, debye_omega, b):
+    Temp_j = []
+    H0 = H_0(J, μ, l, Nb, (base_seed + k))
+    H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+    eigvals, U = np.linalg.eigh(H)
+    ss = rho_ss(U, b, H_number/ω, kappa, ω, l, Nb)
+    for j in range(l):
+        Temp_j.append(cal_localT_new(j, ss, eigvals, U, Nb, debye_omega, l)) # NOTE: I changed this to cal_localT_new to avoid issues with secant method
+    delta_T = np.std(Temp_j)
+    mean_T = np.mean(Temp_j)
+    return delta_T/mean_T# , delta_T, mean_T
+    #fluctuations.append(delta_T/mean_T)
+    #deltaTs.append(delta_T)
+    #Ts.append(mean_T)
+
+def main_parallelize():
+    GAMMA = np.linspace(0.01, 0.25, 25)
+    L_ARRAY = [2, 3, 4, 5]
+
+    J= -0.1
+    μ = 1.3 
+    Ωd = 4 #4.0
+    ω = np.pi / 0.8
+    Nb = 10
+    Nd = 10
+    #debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
+    debye_omega = Ωd
+    kappa = 0
+    alpha = 1
+
+    base_seed = 0  # NOTE: Sets base seed
+    for l in L_ARRAY:
+        temp_fluctuation = []
+#        mean_delta_T = []
+#        mean_Ts = []
+
+        temp_fluc_std = []
+#        deltaT_std = []
+#        Ts_std = []
+
+        H1 = H_1(l, Nb)
+        b = create_b(Nb, alpha=alpha, L=l)
+        b_dagger = b.conj().T
+        H_number = b_dagger_b(ω, b, b_dagger, l)
+        H2 = H1 @ (b + b_dagger)
+
+    # NOTE: G here will be the SCALED gamma (NOT the unscaled version)
+        for G in GAMMA:
+            G = np.power(l, 1/2) * G # NOTE: WE PUT SCALING HERE AS 1/2
+
+            C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+            H2_scaled = H2 * G
+            fluc= Parallel(n_jobs=-1)(
+                    delayed(single_disorder)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
+                                            H2_scaled, H_number, kappa, ω, debye_omega, b)
+                    for k in range(Nd)
+                )
+            temp_fluctuation.append(np.mean(fluc))
+            temp_fluc_std.append(np.std(fluc))
+        print("Fluctuations for L = " + str(l) + " Complete")
+        line, = plt.plot(GAMMA * np.power(l, 1/2), temp_fluctuation, label = l)
+        #plt.errorbar(GAMMA * np.power(l, 1/2), temp_fluctuation, yerr=temp_fluc_std, fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
+        plt.xlabel("Gamma * √L")
+        #plt.yscale("log")
+        plt.ylabel("<δT/T>")
+        #plt.ylim(0, 0.5)
+        plt.title("Temperature Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        plt.legend()
+
+    #plt.yscale("log")
+    plt.show()
+
+
+#main()
+main_parallelize()
 
 '''
 Things to keep note of:

@@ -111,8 +111,8 @@ def transition_A(U, b, H_number, kappa, omega, L, Nb):
     #NOTE: THE SPLA METHOD IS FASTER HERE
 
     #eigvals_A, eigvecs_A = np.linalg.eig(A) # NOTE: You can also use spla.eigs for different accuracy --> This would be best case scenario for sparse matrices
-    #eigvals_A, eigvecs_A = spla.eigs(A, k=1, sigma=1e-30, which='LM') #NOTE: GAMMA=0 DIFFERS BETWEEN THIS AND the numpy method --> Probably due to a degenracy in spectrum of A and they pick 2 different degenerate eigenvectors
-    eigvals_A, eigvecs_A = np.linalg.eig(A) # NOTE: You can also use spla.eigs for different accuracy --> This would be best case scenario for sparse matrices
+    eigvals_A, eigvecs_A = spla.eigs(A, k=1, sigma=1e-30, which='LM') #NOTE: GAMMA=0 DIFFERS BETWEEN THIS AND the numpy method --> Probably due to a degenracy in spectrum of A and they pick 2 different degenerate eigenvectors
+
     return eigvals_A, eigvecs_A
     #return eigenvalues, eigenvectors
 
@@ -155,18 +155,61 @@ def cal_local_spin(j, rhoss, U, Nb, L):
     return local_spin_ss
 
 
-def single_disorder(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
-    spin_j = []
+def trim_20_percent(arr):
+    n = len(arr)
+    trim_count = int(n * 0.2)
+    trimmed_arr = arr[trim_count:n - trim_count]
+    return trimmed_arr
+
+
+def single_disorder_avg(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
+    
     H0 = H_0(J, μ, l, Nb, k + base_seed)
     H = H0 + (H1 * C_H1) + H2_scaled + H_number
 
+    # NOTE: I THINK THIS IS THE MOST MEMORY EFFICIENT
     eigvals, U = np.linalg.eigh(H)
-    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
-    for j in range(l):
-        spin_j.append(cal_local_spin(j, ss, U, Nb, l))
-    delta_spin = np.var(spin_j)
+    #U = np.abs(U)**2
 
-    return delta_spin
+    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
+    #print(ss)
+    indices = np.where(~np.isclose(ss, 0, atol=1e-5))[0] # NOTE: I SUSPECT THAT ATOL CAN BE 1e-10
+    U = U[:, indices]
+    U = np.abs(U)**2
+    KL = np.empty(U.shape[1] - 1)
+    #avg_eigvals = np.empty(U.shape[1] - 1)
+    for n in range(U.shape[1]-1):
+        p = U[:, n]
+        q = U[:, n+1]
+        KL[n] = np.sum(p * (np.log(p) - np.log(q)))
+        #avg_eigvals[n] = (eigvals[n]+eigvals[n+1])/2
+    #return KL, avg_eigvals
+    KL = trim_20_percent(KL)
+    return np.mean(KL), eigvals[indices] # AVG
+
+def single_disorder(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
+    
+    H0 = H_0(J, μ, l, Nb, k + base_seed)
+    H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+    # NOTE: I THINK THIS IS THE MOST MEMORY EFFICIENT
+    eigvals, U = np.linalg.eigh(H)
+    #U = np.abs(U)**2
+
+    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
+    indices = np.where(~np.isclose(ss, 0, atol=1e-10))[0] # NOTE: I SUSPECT THAT ATOL CAN BE 1e-10
+    U = U[:, indices]
+    U = np.abs(U)**2
+    KL = np.empty(U.shape[1] - 1)
+    #avg_eigvals = np.empty(U.shape[1] - 1)
+    for n in range(U.shape[1]-1):
+        p = U[:, n]
+        q = U[:, n+1]
+        KL[n] = np.sum(p * (np.log(p) - np.log(q)))
+        #avg_eigvals[n] = (eigvals[n]+eigvals[n+1])/2
+    #return KL, avg_eigvals
+    #KL = trim_20_percent(KL)
+    return KL, eigvals[indices] # AVG
 
 
 
@@ -230,27 +273,30 @@ def main():
 def main_parallelize():
     base_seed = 0
     #GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
-    GAMMA = np.linspace(0.01, 0.85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
-    #GAMMA = [0]
-    #J= -1.07
-    J = -0.1
-    μ = 1.3
-    #μ = 0.05 
-    #Ωd = 4
-    Ωd = 0
+    GAMMA = [1.05]
+    J= 0
+    #J = -0.5
+    μ = 0.5
+    #μ = 1
+    Ωd = 4
+    #Ωd = 0
+    #ω = np.pi / 0.8
     ω = np.pi/0.8
     L = [2, 3, 4, 5]
-    Nb = 2
+    Nb = 10
     Nd = 10
     debye_omega = 4.0
     #debye_omega = 0
     kappa = 0
     alpha = 1
     #All_H = []
-
-    for l in L:
-        spin_fluctuation = []
-        spin_fluctuation_std = []
+    #fig, axes = plt.subplots(2, 2, figsize=(8, 8))
+    power_scaling = 1
+    plt.figure()
+    for idx, l in enumerate(L):
+        #kl_values = []
+        #kl_values_GOE = []
+        #kl_values_Poisson = []
         H1 = H_1(l, Nb)
         b = create_b(Nb, alpha=alpha, L=l)
         b_dagger = b.conj().T
@@ -259,30 +305,120 @@ def main_parallelize():
         for G in GAMMA:
             #spin_j = []
             # G = G/ np.power(l, 1/2)
-            G = G * np.power(l, 1/2)
+            G = G * np.power(l, power_scaling)
             fluctuations = []
             C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
             H2_scaled = H2 * G
             H_number_norm = H_number / ω
-            fluctuations = Parallel(n_jobs=-1)(
+            result= Parallel(n_jobs=-1)(
                     delayed(single_disorder)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
                                             H2_scaled, H_number, H_number_norm, b, kappa, ω)
                     for k in range(Nd)
                 )
-            spin_fluctuation.append(np.mean(fluctuations))
-            spin_fluctuation_std.append(np.std(fluctuations))
-        print("Fluctuations for L = " + str(l) + " Complete")
-        line, = plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
-        #plt.errorbar(GAMMA * np.power(l, 1/2), spin_fluctuation, yerr=spin_fluctuation_std, fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
-        #plt.plot(GAMMA, spin_fluctuation, label = l)
-        plt.xlabel("Gamma * √L")
-        #plt.yscale("log")
-        plt.ylabel("<δS>")
-        plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
-        plt.legend()
+            results, results_eigvals = zip(*result)
+            KL_data = np.mean(results, axis=0)
+            average_eigvals = np.mean(results_eigvals, axis=0)
+            #kl_val_goe =     [r[0] for r in results]
+            #kl_val_poisson = [r[1] for r in results]
+            #kl_values_GOE.append(np.mean(kl_val_goe))
+            #kl_values_Poisson.append(np.mean(kl_val_poisson))
 
+        '''
+        axes[int(l/2)-1][l % 2].plot(GAMMA*np.sqrt(l), kl_values_GOE, 'g-o', label="KL vs GOE")
+        axes[int(l/2)-1][l%2].plot(GAMMA*np.sqrt(l), kl_values_Poisson, 'r-o', label="KL vs Poisson")
+        axes[int(l/2)-1][l % 2].set_xlabel(f"Γ√L")
+        axes[int(l/2)-1][l % 2].set_ylabel("KL Divergence")
+        axes[int(l/2)-1][l%2].legend()
+        axes[int(l/2)-1][l%2].set_title(f"L = {l}")
+        '''
+        plt.plot(average_eigvals[:-1], KL_data, label=f'L={l}') #, marker='o')
+        print("Fluctuations for L = " + str(l) + " Complete")
+        #plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
+        #plt.xlabel("Gamma * √L")
+        #plt.yscale("log")
+        #plt.ylabel("<δS>")
+        #plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        #plt.legend()
+    plt.legend()
+    plt.title(f" SS Level Statistics: Nd = {str(Nd)}, Nb = {str(Nb)}, base_seed = {str(base_seed)}, (J, μ, Ωd, ω, Γ√L) = {str((J, μ, Ωd, ω, GAMMA[0]))}")
+    plt.xlabel('E - SS Contributions')
+    plt.ylabel('KL(n, n+1) between SS eigenvectors')
+    #plt.ylim(0, 10)
+    
+    plt.tight_layout()
     plt.show()
     #print(f"Fluctuation: {spin_fluctuation}")
 
 
-main_parallelize()
+
+def main_parallelize_average():
+    base_seed = 0
+    #GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.001, .85, 25)
+    J= -1.07
+    #J = -0.5
+    μ = 3.5
+    #μ = 1
+    Ωd = 4
+    #Ωd = 0
+    #ω = np.pi / 0.8
+    ω = np.pi/0.8
+    L = [2, 3, 4, 5]
+    Nb = 10
+    Nd = 10
+    debye_omega = 4.0
+    #debye_omega = 0
+    kappa = 0
+    alpha = 1
+    #All_H = []
+    #fig, axes = plt.subplots(2, 2, figsize=(8, 8))
+    power_scaling = 1/2
+    plt.figure()
+    for idx, l in enumerate(L):
+        kl_values = []
+        H1 = H_1(l, Nb)
+        b = create_b(Nb, alpha=alpha, L=l)
+        b_dagger = b.conj().T
+        H_number = b_dagger_b(ω, b, b_dagger, l)
+        H2 = H1 @ (b + b_dagger)
+        for G in GAMMA:
+            #spin_j = []
+            # G = G/ np.power(l, 1/2)
+            G = G * np.power(l, power_scaling)
+            fluctuations = []
+            C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+            H2_scaled = H2 * G
+            H_number_norm = H_number / ω
+            result= Parallel(n_jobs=-1)(
+                    delayed(single_disorder_avg)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
+                                            H2_scaled, H_number, H_number_norm, b, kappa, ω)
+                    for k in range(Nd)
+                )
+            results, results_eigvals = zip(*result)
+            KL_data = np.mean(results, axis=0)
+            kl_values.append(np.mean(KL_data))
+
+        plt.plot(GAMMA * np.power(l, power_scaling), kl_values, label=f'L={l}') #, marker='o')
+        print("Fluctuations for L = " + str(l) + " Complete")
+        #plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
+        #plt.xlabel("Gamma * √L")
+        #plt.yscale("log")
+        #plt.ylabel("<δS>")
+        #plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        #plt.legend()
+    plt.legend()
+    plt.title(f" Level Statistics: Nd = {str(Nd)}, Nb = {str(Nb)}, base_seed = {str(base_seed)}, (J, μ, Ωd, ω) = {str((J, μ, Ωd, ω))}")
+    plt.xlabel('Γ√L')
+    plt.ylabel('<KL>')
+    #plt.ylim(0, 10)
+    
+    plt.tight_layout()
+    plt.show()
+    #print(f"Fluctuation: {spin_fluctuation}")
+
+
+
+
+main_parallelize_average()

@@ -479,10 +479,10 @@ def single_disorder(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number,ka
     #Ts.append(mean_T)
 
 def main_parallelize():
-    GAMMA = np.linspace(0.01, 0.25, 25)
+    GAMMA = np.linspace(0.01, 0.5, 40)
     L_ARRAY = [2, 3, 4, 5]
 
-    J= -0.1
+    J= -1.07
     μ = 1.3 
     Ωd = 4 #4.0
     ω = np.pi / 0.8

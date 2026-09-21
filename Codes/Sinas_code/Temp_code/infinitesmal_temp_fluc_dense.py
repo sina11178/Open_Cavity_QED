@@ -484,7 +484,7 @@ def main_parallelize():
 
     J= -1.07
     μ = 1.3 
-    Ωd = 4 #4.0
+    Ωd = 0 #4.0
     ω = np.pi / 0.8
     Nb = 10
     Nd = 10
@@ -493,7 +493,7 @@ def main_parallelize():
     kappa = 0
     alpha = 1
 
-    base_seed = 0  # NOTE: Sets base seed
+    base_seed =  0 # NOTE: Sets base seed
     for l in L_ARRAY:
         temp_fluctuation = []
 #        mean_delta_T = []
@@ -520,7 +520,7 @@ def main_parallelize():
                                             H2_scaled, H_number, kappa, ω, debye_omega, b)
                     for k in range(Nd)
                 )
-            temp_fluctuation.append(np.mean(fluc))
+            temp_fluctuation.append(np.mean(fluc))   # YOU CAN USE np.nanmean instead
             temp_fluc_std.append(np.std(fluc))
         print("Fluctuations for L = " + str(l) + " Complete")
         line, = plt.plot(GAMMA * np.power(l, 1/2), temp_fluctuation, label = l)

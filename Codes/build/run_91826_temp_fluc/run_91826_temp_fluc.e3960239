@@ -1,0 +1,8 @@
+  File "/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py", line 486
+    μ 1.3 
+       ^
+SyntaxError: invalid syntax
+
+real	0m0.397s
+user	0m0.016s
+sys	0m0.011s

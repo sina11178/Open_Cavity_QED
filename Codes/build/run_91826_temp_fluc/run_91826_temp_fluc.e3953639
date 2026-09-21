@@ -1,0 +1,3 @@
+/home/sxr190099/.conda/envs/myenv/lib/python3.9/site-packages/joblib/externals/loky/process_executor.py:782: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+  warnings.warn(
+[2026-09-20T00:43:42.868] error: *** JOB 3953639 ON g-06-02 CANCELLED AT 2026-09-20T00:43:42 DUE to SIGNAL Terminated ***

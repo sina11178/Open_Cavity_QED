@@ -1,0 +1,218 @@
+commit c09e4639719a9b670c0022eda581295470aca482
+Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
+Date:   Fri Sep 18 13:26:10 2026 -0500
+
+    Commit before run run_91826_temp_fluc
+
+commit ebd7ca8811bfb6a80c31c5ced19431dbe755640d
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Fri Sep 18 12:48:01 2026 -0500
+
+    Testing code - Will send to cluster soon
+
+commit 3748828701b2963d41ebb3ab374c16e2e195b5b2
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Tue Sep 15 20:30:48 2026 -0500
+
+    Various changes made:
+    
+    - Parallelization of temperature
+    - Temperature data ran
+    - More spin fluctuation data ran
+    - Heisenberg chain created
+    - Level statistics of perturbed and unperturbed Hamiltonian added
+
+commit ae30097c1aea5c682973c1e4117acfd781b1502f
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Thu May 14 17:33:34 2026 -0500
+
+    did some sweep tests
+
+commit c6433d46519e9c6358918817fd9d144201646f5d
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Wed Apr 22 18:35:28 2026 -0500
+
+    Started implementing for loops
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+commit 6d30c087d704bc4543536a00fd55b314096b0eb3
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Wed Apr 22 09:34:17 2026 -0500
+
+    New file created for exploring parameter space for spin fluc
+
+commit b541389d8d0ed4ce8144721b166036b981a4685e
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Wed Apr 22 09:29:09 2026 -0500
+
+    Created folders for spin code and temp codes:
+    
+    Moved my codes into respective folders
+
+commit bf927a050d5b14daa3fe353b51b3dc87773aed81
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Thu Apr 16 14:12:16 2026 -0500
+
+    Some quick tests ran
+
+commit d950daa37ac5cf9cd6a85be8065866ffa3bea122
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Fri Apr 10 12:20:23 2026 -0500
+
+    Tested Perturbative limit for Gamma
+
+commit 7e9b96774bb155bfd87921b0137dae392b2f2114
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Tue Apr 7 13:09:39 2026 -0500
+
+    Changed title name on graphs to include parameters
+
+commit 5de301b19929e6c6bb87570acee1d66c7ec872be
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Apr 6 18:52:01 2026 -0500
+
+    Changed FM calculation so that it calculates:
+    
+    1- abs(FM)^2/normalization
+
+commit 4126ad3a0c7eddd444b1ad8d61a72406b8de78f2
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Apr 6 17:02:43 2026 -0500
+
+    Created code to measure these things wrt time:
+    
+    - Total magnetization
+    - Fourier Mode magnetization (from David Huse paper)
+    - 2-point correlation function magnetization (summed over all sites)
+    
+    This was all done to see which would fit as a better order parameter. Additionally, I created a code to parallelize all shots I have in my system (Nd) among all the cores in my laptop
+
+commit d6752bb355d44f82d8ebac2ad2bfacaaed935760
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Fri Apr 3 14:41:09 2026 -0500
+
+    Graphing script created to graph results for the temperature fluctuations for L = 4 and L = 5
+
+commit dddbb974ec67d56649feffad424a420f94f81d41
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 17:00:42 2026 -0500
+
+    Data for temperature fluctuations from cluster added to 'data'
+
+commit 28aef4fc2d7165f3a9d3a9a26817e9ff1343a782
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:45:30 2026 -0500
+
+    Commit before run run_32326_temp_fluc_L_4_5
+
+commit eb331f39e42af4ab3118697866bb48ff259241dc
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:40:57 2026 -0500
+
+    Commit before run run_32326_temp_fluc_L_4_5
+
+commit 9e76ea3a2b3094da900628efda28270d39d8a29a
+Merge: e5b4be2 3c621c4
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:37:08 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+    
+    Merging branches
+
+commit e5b4be2dd1f2300d506f9d994b6d8fc94ce29798
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Wed Apr 1 14:35:58 2026 -0500
+
+    Any new changes in cluster
+
+commit 3c621c48f64d93b22100cf1352244cbca999eed7
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Wed Apr 1 14:02:23 2026 -0500
+
+    Small changes. Nothing too major. It was to the spin fluctuation code
+
+commit 5b86c560485e539a60cdf42def5f0deb9d030d21
+Merge: d922031 d77e4ea
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 18:51:17 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+
+commit d92203110600394bdd9afd88f980f0e4e7eb69f5
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 18:50:44 2026 -0500
+
+    Changed name RUNNUMBER
+
+commit d77e4ea10fed6f3ee4f733ccdf47f3ed498b3bb1
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Mon Mar 23 18:42:07 2026 -0500
+
+    First sim code created under name 'run_22326_temp_fluc_L_4_5'
+
+commit 0865e7c5bcae1eb74bdc47e1fa72c5b2ea005d22
+Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
+Date:   Mon Mar 23 18:08:24 2026 -0500
+
+    Commit before run run_32326_temp_fluc_L_4_5
+
+commit 014b9f3aabacb7e35f06a5997551bee4fefa7e35
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:46:24 2026 -0500
+
+    Changed to 50 points
+
+commit 3fb8104871d586a15d50a3a63fe462e3eff9bc41
+Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
+Date:   Mon Mar 23 17:44:42 2026 -0500
+
+    build folder created
+
+commit a5387922b2052ca55471abaf8d3d437ff5619f83
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:30:45 2026 -0500
+
+    Quick note on scaling added
+
+commit 3d7655760742043de0b1c89479fc01c98d9b0d00
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:29:34 2026 -0500
+
+    Nd = 1500
+
+commit 7e15f9371c67b4d735830869df091d771738ca64
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 17:28:28 2026 -0500
+
+    Created code to save results in .npz files
+
+commit df139de8c50b7fb8b9571b40f98ed932311cdad6
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 16:16:51 2026 -0500
+
+    Created a new main function for temperature fluctuation measurement in temp_fluc_dense:
+    
+    - Meant to implement for the cluster
+    
+    - I must still create code to input data into .npz file
+
+commit 9d1ddd760af1b8d2606049c068d14f620f2cd24d
+Merge: 5912125 d1dc067
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 15:14:34 2026 -0500
+
+    Merge branch 'main' of https://github.com/sina11178/Open_Cavity_QED
+
+commit 591212512cadc124dd8a2d4bce949e1dd1620ca3
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Mon Mar 23 15:12:23 2026 -0500
+
+    Initial commit
+
+commit d1dc0674a68059237d9bad600860f279bc83e5f7
+Author: sina11178 <113195576+sina11178@users.noreply.github.com>
+Date:   Mon Mar 23 15:03:21 2026 -0500
+
+    Initial commit

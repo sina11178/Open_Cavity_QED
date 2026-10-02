@@ -484,7 +484,7 @@ def main_parallelize():
 
     J= -1.07
     μ = 1.3 
-    Ωd = 0 #4.0
+    Ωd = 4 #4.0
     ω = np.pi / 0.8
     Nb = 10
     Nd = 10

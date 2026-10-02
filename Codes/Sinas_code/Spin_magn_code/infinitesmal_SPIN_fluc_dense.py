@@ -230,17 +230,17 @@ def main():
 def main_parallelize():
     base_seed = 0
     #GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
-    GAMMA = np.linspace(0.01, 0.85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.01, 0.85, 40)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     #J= -1.07
-    J = -0.1
+    J = -0.1 #-1.07
     μ = 1.3
     #μ = 0.05 
     #Ωd = 4
-    Ωd = 0
+    Ωd = 4
     ω = np.pi/0.8
     L = [2, 3, 4, 5]
-    Nb = 2
+    Nb = 10
     Nd = 10
     debye_omega = 4.0
     #debye_omega = 0
@@ -272,8 +272,8 @@ def main_parallelize():
             spin_fluctuation.append(np.mean(fluctuations))
             spin_fluctuation_std.append(np.std(fluctuations))
         print("Fluctuations for L = " + str(l) + " Complete")
-        line, = plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, label = l)
-        #plt.errorbar(GAMMA * np.power(l, 1/2), spin_fluctuation, yerr=spin_fluctuation_std, fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
+        line, = plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, marker="o", label = l)
+        plt.errorbar(GAMMA * np.power(l, 1/2), spin_fluctuation, yerr=spin_fluctuation_std/np.sqrt(Nd-1), fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
         #plt.plot(GAMMA, spin_fluctuation, label = l)
         plt.xlabel("Gamma * √L")
         #plt.yscale("log")

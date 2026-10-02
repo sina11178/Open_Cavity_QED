@@ -545,8 +545,81 @@ def main_parallelize():
     #plt.show()
 
 
+def single_disorder_V2(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number,kappa,omega, debye_omega, b):
+    Temp_j = []
+    H0 = H_0(J, μ, l, Nb, (base_seed + k))
+    H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+    eigvals, U = np.linalg.eigh(H)
+    ss = rho_ss(U, b, H_number/omega, kappa, omega, l, Nb)
+    for j in range(l):
+        Temp_j.append(cal_localT_new(j, ss, eigvals, U, Nb, debye_omega, l)) # NOTE: I changed this to cal_localT_new to avoid issues with secant method
+    return np.array(Temp_j)
+
+def main_parallelize_V2():
+    GAMMA = np.linspace(0.01, 0.5, 40)
+    L_ARRAY = [2, 3, 4, 5, 6]
+
+    J= -1.07
+    μ=  1.3 
+    Ωd=0 # 4 # 4 #4.0
+    omega = np.pi / 0.8
+    Nb = 10
+    Nd = 1000
+    #debye_omega = 4.0 # NOTE: This is equal to Ωd based on what they overleaf says (Previously --> 10.0)
+    debye_omega = Ωd
+    kappa = 0
+    alpha = 1
+
+    # FOR FILE NAME
+    Omd = Ωd
+    omega = omega
+    mu = μ
+
+    base_seed = 0  # NOTE: Sets base seed
+    for l in L_ARRAY:
+        temp_fluctuation = []
+#        mean_delta_T = []
+#        mean_Ts = []
+
+        temp_fluc_std = []
+#        deltaT_std = []
+#        Ts_std = []
+
+        H1 = H_1(l, Nb)
+        b = create_b(Nb, alpha=alpha, L=l)
+        b_dagger = b.conj().T
+        H_number = b_dagger_b(omega, b, b_dagger, l)
+        H2 = H1 @ (b + b_dagger)
+
+    # NOTE: G here will be the SCALED gamma (NOT the unscaled version)
+        for G in GAMMA:
+            G = np.power(l, 1/2) * G # NOTE: WE PUT SCALING HERE AS 1/2
+
+            C_H1 = (-8*Ωd *omega * G)/ (kappa**2 + 4*omega**2) # prefactor for H1
+            H2_scaled = H2 * G
+            results= Parallel(n_jobs=-1)(
+                    delayed(single_disorder_V2)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
+                                            H2_scaled, H_number, kappa, omega, debye_omega, b)
+                    for k in range(Nd)
+                )  # Shape: (Nd, l)
+            np.save(f"Tj_scaled_gam_{np.round(G, 3)}_L{l}_J_{J}_mu_{mu}_Omd_{np.round(Omd, 3)}_omeg_{np.round(omega, 3)}_Nb_{Nb}_Nd_{Nd}.npy", results)
+            #temp_fluctuation.append(np.mean(fluc))
+            #emp_fluc_std.append(np.std(fluc))
+        print("Fluctuations for L = " + str(l) + " Complete")
+        np.save("unscaled_gamma.npy", GAMMA)
+
+    #plt.yscale("log")
+    #plt.show()
+
+
+
+
+
 #main()
-main_parallelize()
+#main_parallelize()
+main_parallelize_V2()
+
 
 '''
 Things to keep note of:

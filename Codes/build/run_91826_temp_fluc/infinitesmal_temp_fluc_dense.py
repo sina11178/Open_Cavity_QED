@@ -595,6 +595,7 @@ def main_parallelize_V2():
     # NOTE: G here will be the SCALED gamma (NOT the unscaled version)
         for G in GAMMA:
             G = np.power(l, 1/2) * G # NOTE: WE PUT SCALING HERE AS 1/2
+            g_unscaled = G / np.power(l, 1/2)
 
             C_H1 = (-8*Ωd *omega * G)/ (kappa**2 + 4*omega**2) # prefactor for H1
             H2_scaled = H2 * G
@@ -603,7 +604,7 @@ def main_parallelize_V2():
                                             H2_scaled, H_number, kappa, omega, debye_omega, b)
                     for k in range(Nd)
                 )  # Shape: (Nd, l)
-            np.save(f"Tj_scaled_gam_{np.round(G, 3)}_L{l}_J_{J}_mu_{mu}_Omd_{np.round(Omd, 3)}_omeg_{np.round(omega, 3)}_Nb_{Nb}_Nd_{Nd}.npy", results)
+            np.save(f"Tj_unscaled_gam_{np.round(g_unscaled, 3)}_L{l}_J_{J}_mu_{mu}_Omd_{np.round(Omd, 3)}_omeg_{np.round(omega, 3)}_Nb_{Nb}_Nd_{Nd}.npy", results)
             #temp_fluctuation.append(np.mean(fluc))
             #emp_fluc_std.append(np.std(fluc))
         print("Fluctuations for L = " + str(l) + " Complete")

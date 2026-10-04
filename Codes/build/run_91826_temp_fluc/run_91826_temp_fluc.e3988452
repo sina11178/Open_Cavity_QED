@@ -1,0 +1,124 @@
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: divide by zero encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:193: RuntimeWarning: invalid value encountered in divide
+  small = mask & (np.abs(dE/Tem) < 1e-6)
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: divide by zero encountered in divide
+  x = dE/Tem
+/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py:198: RuntimeWarning: invalid value encountered in divide
+  x = dE/Tem
+
+real	44m53.162s
+user	4826m29.448s
+sys	35m53.269s

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/scratch/ganymede2/sxr190099/run_91826_temp_fluc/b0/./infinitesmal_temp_fluc_dense.py", line 2, in <module>
+    import matplotlib.pyplot as plt
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/matplotlib/__init__.py", line 159, in <module>
+    from . import _api, _version, cbook, _docstring, rcsetup
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/matplotlib/rcsetup.py", line 28, in <module>
+    from matplotlib.colors import Colormap, is_color_like
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/matplotlib/colors.py", line 52, in <module>
+    from PIL import Image
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/PIL/Image.py", line 59, in <module>
+    from ._util import DeferredError, is_path
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/PIL/_util.py", line 6, in <module>
+    from ._typing import StrOrBytesPath, TypeGuard
+  File "/home/sxr190099/.local/lib/python3.9/site-packages/PIL/_typing.py", line 33, in <module>
+    from typing_extensions import TypeGuard
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 982, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+PermissionError: [Errno 13] Permission denied: '/opt/ohpc/pub/unpackaged/apps/miniconda/4.12.0/lib/python3.9/site-packages/typing_extensions.py'
+
+real	0m1.432s
+user	0m0.071s
+sys	0m0.045s

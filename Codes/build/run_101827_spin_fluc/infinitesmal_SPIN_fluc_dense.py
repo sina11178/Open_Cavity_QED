@@ -285,4 +285,82 @@ def main_parallelize():
     #print(f"Fluctuation: {spin_fluctuation}")
 
 
-main_parallelize()
+def single_disorder_V2(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
+    spin_j = []
+    H0 = H_0(J, μ, l, Nb, k + base_seed)
+    H = H0 + (H1 * C_H1) + H2_scaled + H_number
+
+    eigvals, U = np.linalg.eigh(H)
+    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
+    for j in range(l):
+        spin_j.append(cal_local_spin(j, ss, U, Nb, l))
+    #delta_spin = np.var(spin_j)
+
+    return np.array(spin_j)
+
+def main_parallelize_V2():
+    base_seed = 0
+    #GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.01, 0.5, 40)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    #GAMMA = [0]
+    #J= -1.07
+    J = -0.1 #-1.07
+    μ = 1.3
+    #μ = 0.05 
+    #Ωd = 4
+    Ωd = 4
+    ω = np.pi/0.8
+    L = [2, 3, 4, 5, 6, 7, 8, 9]
+    Nb = 10
+    Nd = 1000
+    debye_omega = Ωd
+    #debye_omega = 0
+    kappa = 0
+    alpha = 1
+    #All_H = []
+
+    Omd = Ωd
+    omega = omega
+    mu = μ
+
+    for l in L:
+
+
+        H1 = H_1(l, Nb)
+        b = create_b(Nb, alpha=alpha, L=l)
+        b_dagger = b.conj().T
+        H_number = b_dagger_b(ω, b, b_dagger, l)
+        H2 = H1 @ (b + b_dagger)
+        
+        for G in GAMMA:
+            #spin_j = []
+            # G = G/ np.power(l, 1/2)
+            G = G * np.power(l, 1/2)
+            g_unscaled = G / np.power(l, 1/2)
+
+            C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+            H2_scaled = H2 * G
+            H_number_norm = H_number / ω
+            results = Parallel(n_jobs=-1)(
+                    delayed(single_disorder_V2)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
+                                            H2_scaled, H_number, H_number_norm, b, kappa, ω)
+                    for k in range(Nd)
+                )
+            #spin_fluctuation.append(np.mean(fluctuations))
+            #spin_fluctuation_std.append(np.std(fluctuations))
+            np.save(f"Spin_j_unscaled_gam_{np.round(g_unscaled, 3)}_L{l}_J_{J}_mu_{mu}_Omd_{np.round(Omd, 3)}_omeg_{np.round(omega, 3)}_Nb_{Nb}_Nd_{Nd}.npy", results)
+        np.save("unscaled_gamma.npy", GAMMA)
+        print("Fluctuations for L = " + str(l) + " Complete")
+        #line, = plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, marker="o", label = l)
+        #plt.errorbar(GAMMA * np.power(l, 1/2), spin_fluctuation, yerr=spin_fluctuation_std/np.sqrt(Nd-1), fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
+        #plt.plot(GAMMA, spin_fluctuation, label = l)
+        #plt.xlabel("Gamma * √L")
+        #plt.yscale("log")
+        #plt.ylabel("<δS>")
+        #plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        #plt.legend()
+
+    #plt.show()
+    #print(f"Fluctuation: {spin_fluctuation}")
+
+main_parallelize_V2()

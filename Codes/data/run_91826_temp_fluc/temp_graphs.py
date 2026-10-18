@@ -9,12 +9,12 @@ import sys
 from joblib import Parallel, delayed
 
 
-l_array = [2, 3, 4, 5, 6, 7]
+l_array = [2, 3, 4, 5, 6]
 Nb = 10
 Nd = 1000
-J = -0.1
+J = -1.07
 mu = 1.3
-Omd = 4
+Omd = 0
 omeg = 3.927
 
 gamma_array = np.load(f"./b0/unscaled_gamma.npy")

@@ -1,3 +1,57 @@
+commit 8718548344a40ab2e844f1362497629c99a8df80
+Author: Sina Rezvani <SXR190099@utdallas.edu>
+Date:   Sun Oct 18 17:26:57 2026 -0500
+
+    Commit before run run_101827_spin_fluc
+
+commit 93b0049982221c206ed580346e42ffe01ae16ad7
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Sun Oct 18 17:21:40 2026 -0500
+
+    spin fluc code ready
+
+commit b65d61b90b27e43839bcf5b5cb244d20570e36c3
+Author: Sina Rezvani <SXR190099@utdallas.edu>
+Date:   Sun Oct 18 16:54:01 2026 -0500
+
+    setting up spin fluc sims
+
+commit 6b438eb6bdbf8d6ba8b2a39d41e5289cdc82921d
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Sun Oct 18 16:31:32 2026 -0500
+
+    graphs of temperature added
+
+commit 51c84b363da565381e9d2f708f44e8f6b42f5d6c
+Author: Sina Rezvani <sxr190099@g2-l-01.utdallas.edu>
+Date:   Sun Oct 4 18:47:22 2026 -0500
+
+    Data added for all iterations at different gammas for different parameters
+
+commit 16d6f5c8cc4cc93588714adb7a263f0208dc79bd
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Fri Oct 2 14:57:02 2026 -0500
+
+    fixed code
+
+commit 268ed9caa10271434a9aecbbbca266aace7c18c8
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Fri Oct 2 14:42:10 2026 -0500
+
+    Updated sim code so that it saves all the iterations for the different gamma values
+
+commit c4886eb6c61d4f41f5b25a4863579cd99e456a67
+Author: sina11178 <frsinarez4@gmail.com>
+Date:   Sun Sep 20 21:18:21 2026 -0500
+
+    Testing code
+
+commit ab2ba45cf66e07bf2464f5258bc499a05648784c
+Author: Sina Rezvani <sxr190099@g2-l-01.localdomain>
+Date:   Sun Sep 20 21:17:27 2026 -0500
+
+    Added temp fluctuation data for 1000 iterations
+
 commit c09e4639719a9b670c0022eda581295470aca482
 Author: Sina Rezvani <sxr190099@g2-l-02.localdomain>
 Date:   Fri Sep 18 13:26:10 2026 -0500

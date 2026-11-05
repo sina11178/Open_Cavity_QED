@@ -285,13 +285,13 @@ def main_parallelize():
     #print(f"Fluctuation: {spin_fluctuation}")
 
 
-def single_disorder_V2(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa, ω):
+def single_disorder_V2(k, base_seed, J, μ, l, Nb, H1, C_H1, H2_scaled, H_number, H_number_norm, b, kappa,omega):
     spin_j = []
     H0 = H_0(J, μ, l, Nb, k + base_seed)
     H = H0 + (H1 * C_H1) + H2_scaled + H_number
 
     eigvals, U = np.linalg.eigh(H)
-    ss = rho_ss(U, b, H_number_norm, kappa, ω, l, Nb)
+    ss = rho_ss(U, b, H_number_norm, kappa, omega, l, Nb)
     for j in range(l):
         spin_j.append(cal_local_spin(j, ss, U, Nb, l))
     #delta_spin = np.var(spin_j)
@@ -304,13 +304,13 @@ def main_parallelize_V2():
     GAMMA = np.linspace(0.01, 0.5, 40)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     #J= -1.07
-    J = -0.1 #-1.07
+    J = -1.07
     μ = 1.3
     #μ = 0.05 
     #Ωd = 4
     Ωd = 4
-    ω = np.pi/0.8
-    L = [2, 3, 4, 5, 6, 7, 8, 9]
+    omega = np.pi/0.8
+    L = [2, 3, 4, 5, 6, 7, 8]
     Nb = 10
     Nd = 1000
     debye_omega = Ωd
@@ -329,7 +329,7 @@ def main_parallelize_V2():
         H1 = H_1(l, Nb)
         b = create_b(Nb, alpha=alpha, L=l)
         b_dagger = b.conj().T
-        H_number = b_dagger_b(ω, b, b_dagger, l)
+        H_number = b_dagger_b(omega, b, b_dagger, l)
         H2 = H1 @ (b + b_dagger)
         
         for G in GAMMA:
@@ -338,12 +338,12 @@ def main_parallelize_V2():
             G = G * np.power(l, 1/2)
             g_unscaled = G / np.power(l, 1/2)
 
-            C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
+            C_H1 = (-8*Ωd *omega * G)/ (kappa**2 + 4* omega**2) # prefactor for H1
             H2_scaled = H2 * G
-            H_number_norm = H_number / ω
+            H_number_norm = H_number / omega
             results = Parallel(n_jobs=-1)(
                     delayed(single_disorder_V2)(k, base_seed, J, μ, l, Nb, H1, C_H1, 
-                                            H2_scaled, H_number, H_number_norm, b, kappa, ω)
+                                            H2_scaled, H_number, H_number_norm, b, kappa, omega)
                     for k in range(Nd)
                 )
             #spin_fluctuation.append(np.mean(fluctuations))

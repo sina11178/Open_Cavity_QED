@@ -9,7 +9,7 @@ import sys
 from joblib import Parallel, delayed
 
 
-l_array = [2, 3, 4, 5, 6]
+l_array = [2, 3, 4, 5, 6, 7, 8]
 Nb = 10
 Nd = 1000
 J = -1.07
@@ -22,7 +22,7 @@ gamma_array = np.load(f"./b0/unscaled_gamma.npy")
 
 gamma = gamma_array[0]
 
-file_name_temp = f"./b0/Tj_unscaled_gam_{np.round(gamma,3)}_L{l}_J_{J}_mu_{mu}_Omd_{Omd}_omeg_{omeg}_Nb_{Nb}_Nd_{Nd}.npy"
+file_name_temp = f"./b0/Spin_j_unscaled_gam_{np.round(gamma,3)}_L{l}_J_{J}_mu_{mu}_Omd_{Omd}_omeg_{omeg}_Nb_{Nb}_Nd_{Nd}.npy"
 
 temp_data = np.load(file_name_temp)
 

@@ -230,11 +230,12 @@ def main():
 def main_parallelize():
     base_seed = 0
     #GAMMA = np.linspace(0.001, .85, 25)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
-    GAMMA = np.linspace(0.01, 0.85, 40)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    GAMMA = np.linspace(0.01, 2, 65)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
+    #GAMMA = np.linspace(2, 4, 30)  # NOTE: IF USING SPLA, DONT USE GAMMA TOO CLOSE TO 0
     #GAMMA = [0]
     #J= -1.07
-    J = -0.1 #-1.07
-    μ = 1.3
+    J = -1.07/1 #-1.07
+    μ = 1.3/1
     #μ = 0.05 
     #Ωd = 4
     Ωd = 4
@@ -247,7 +248,7 @@ def main_parallelize():
     kappa = 0
     alpha = 1
     #All_H = []
-
+    power = 1/2
     for l in L:
         spin_fluctuation = []
         spin_fluctuation_std = []
@@ -259,7 +260,7 @@ def main_parallelize():
         for G in GAMMA:
             #spin_j = []
             # G = G/ np.power(l, 1/2)
-            G = G * np.power(l, 1/2)
+            G = G * np.power(l, power)
             fluctuations = []
             C_H1 = (-8*Ωd * ω * G)/ (kappa**2 + 4*ω**2) # prefactor for H1
             H2_scaled = H2 * G
@@ -272,13 +273,14 @@ def main_parallelize():
             spin_fluctuation.append(np.mean(fluctuations))
             spin_fluctuation_std.append(np.std(fluctuations))
         print("Fluctuations for L = " + str(l) + " Complete")
-        line, = plt.plot(GAMMA * np.power(l, 1/2), spin_fluctuation, marker="o", label = l)
-        plt.errorbar(GAMMA * np.power(l, 1/2), spin_fluctuation, yerr=spin_fluctuation_std/np.sqrt(Nd-1), fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
+        line, = plt.plot(GAMMA * np.power(l, power), spin_fluctuation, marker="o", label = l)
+        #plt.errorbar(GAMMA * np.power(l, power), spin_fluctuation, yerr=spin_fluctuation_std/np.sqrt(Nd-1), fmt='o', capsize=5, color=line.get_color())  # PRINT THIS IF YOU WANT ERROR BARS
         #plt.plot(GAMMA, spin_fluctuation, label = l)
-        plt.xlabel("Gamma * √L")
-        #plt.yscale("log")
-        plt.ylabel("<δS>")
-        plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((J, μ, Ωd, ω, Nb)))
+        plt.xlabel("Gamma * L^" + str(power), fontsize=18)
+        #plt.xlabel("Gamma", fontsize=18)
+        plt.yscale("log")
+        plt.ylabel("<δS>", fontsize=18)
+        plt.title("Spin Fluctuations - Nd = " + str(Nd) + ", Nb = " + str(Nb) + " , base_seed = " + str(base_seed)+ " (J, μ, Ωd, ω, Nb) = " + str((np.round(J, 3), np.round(μ, 3), np.round(Ωd, 3), np.round(ω, 3), Nb)), fontsize=18)
         plt.legend()
 
     plt.show()
